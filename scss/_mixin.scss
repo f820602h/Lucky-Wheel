@@ -1,0 +1,212 @@
+@import '_function.scss';
+
+//container '@con'
+@mixin container($width: $maxWidth) {
+  $maxWidth: 1140px !default;
+  max-width: $width;
+  margin: 0 auto;
+}
+
+//images '@bg'
+@mixin background($url, $positionX: center, $positionY: center, $size: cover) {
+  background: {
+    image: url($url);
+    position-x: $positionX;
+    position-y: $positionY;
+    size: $size;
+    repeat: no-repeat;
+  }
+}
+
+
+//font 'tg'
+@mixin font($sizeLevel: 1, $weightLevel: 4, $multiple: n, $mediaSize: md) {
+  $size: fontSize($sizeLevel);
+
+  font-size: $size;
+  font-weight: fontWeight($weightLevel);
+  line-height: rhythm($size);
+
+  @if $multiple != n {
+    $rwdSize: fontSizeRwd($sizeLevel, $multiple);
+    @media only screen and (max-width: media($mediaSize)) {
+      font-size: $rwdSize;
+      line-height: rhythm($rwdSize);
+    }
+  }
+}
+
+// 'textover'
+@mixin textOverflow($line: 1) {
+  @if $line <= 1 {
+    @extend %text-overflow;
+  } @else {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+  }
+}
+
+//box-model '@mg'
+@mixin margin($top: 0, $right: 0, $bottom: $top, $left: $right) {
+  margin: getGutter($top) getGutter($right) getGutter($bottom) getGutter($left);
+}
+//'@mt' '@mb' '@ml' '@mr' '@mx' @my' '@mgc'
+@mixin direct-margin($dir, $level) {
+  $dir: map-get($direction, $dir);
+  @each $value in $dir {
+    margin-#{$value}: getGutter($level);
+  }
+}
+//'@pd'
+@mixin padding($top: 0, $right: 0, $bottom: $top, $left: $right) {
+  padding: getGutter($top) getGutter($right) getGutter($bottom) getGutter($left);
+}
+//'@pt' '@pb' '@pl' '@pr' '@px' @py'
+@mixin direct-padding($dir, $level) {
+  $dir: map-get($direction, $dir);
+  @each $value in $dir {
+    padding-#{$value}: getGutter($level);
+  }
+}
+//border '@bd'
+@mixin border($dir, $px, $color, $style: solid, $origin: false) {
+  $dir: map-get($direction, $dir);
+  @if ($origin == hover) {
+    @each $value in $dir {
+      border-#{$value}: $px solid transparent;
+    }
+    &:hover {
+      @each $value in $dir {
+        border-#{$value}: $px $style color($color);
+      }
+    }
+  } @else if($origin == false) {
+    @each $value in $dir {
+      border-#{$value}: $px $style color($color);
+    }
+  } @else {
+    @each $value in $dir {
+      border-#{$value}: $px solid transparent;
+    }
+    &.#{$origin} {
+      @each $value in $dir {
+        border-#{$value}: $px $style color($color);
+      }
+    }
+  }
+}
+
+@mixin scaleBox($widthPercent, $width, $height) {
+  $ratio: $height / $width;
+
+  width: $widthPercent;
+  padding-bottom: $widthPercent * $ratio;
+}
+
+//media query 'md'
+@mixin media($size) {
+  @media only screen and (max-width: media($size)) {
+    @content;
+  }
+}
+// 特殊變版 'spmd'
+@mixin spMedia($pixel) {
+  @media only screen and (max-width: $pixel) {
+    @content;
+  }
+}
+
+//display-none '@none'
+@mixin display($size, $toggle: hide) {
+  $condition: max-width;
+  $media: media($size);
+  @if $toggle == show {
+    $condition: min-width;
+    $media: media($size) + 1px;
+  }
+  @media only screen and (#{$condition}: $media) {
+    display: none;
+  }
+}
+
+//flex
+@mixin flexSet($align: fs, $justify: fs, $wrap: no) {
+  display: flex;
+  @if $align != fs {
+    align-items: map-get($alignItems, $align);
+  }
+  @if $justify != fs {
+    justify-content: map-get($justifyContent, $justify);
+  }
+  @if $wrap == wrap {
+    flex-wrap: wrap;
+  }
+}
+//@include flexSet(); '@f'
+//@include flexSet(c); '@fc'
+//@include flexSet(c,c); '@fcc'
+//@include flexSet(fs,fs,wrap); '@fw'
+
+//'@fd'
+@mixin flexDir($direction: c, $mediaSize: 0) {
+  @if $direction == c {
+    flex-direction: column;
+  } @else if $direction == rc {
+    @include media($mediaSize) {
+      flex-direction: column;
+    }
+  } @else if $direction == cr {
+    flex-direction: column;
+    @include media($mediaSize) {
+      flex-direction: row;
+    }
+  }
+}
+
+//漢堡選單 '@ham'
+@mixin hamburger($lineHeight, $lineColor, $lineMargin, $transition: 0.5s) {
+  .btnLine {
+    position: relative;
+    top: 0;
+    transform-origin: center;
+    height: $lineHeight;
+    background: color($lineColor);
+    transition: $transition;
+    @include direct-margin(x, a);
+    &.btnMiddle {
+      margin-top: $lineMargin;
+      margin-bottom: $lineMargin;
+    }
+  }
+  &.active {
+    .btnTop {
+      top: $lineMargin + $lineHeight;
+      transform: rotate(45deg);
+    }
+    .btnMiddle {
+      background: none;
+    }
+    .btnBottom {
+      top: ($lineMargin + $lineHeight) * -1;
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+//circle box '@circle'
+@mixin circle($width) {
+  width: $width;
+  height: $width;
+  border-radius: 50%;
+}
+
+@mixin faker($content:'', $beAf:after, $display: block) {
+  &::#{$beAf}{
+    content: $content;
+    display: $display;
+    @content;
+  }
+}

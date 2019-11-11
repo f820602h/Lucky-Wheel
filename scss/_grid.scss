@@ -1,0 +1,41 @@
+.gridBox {
+  @extend %clear;
+}
+
+.flexBox {
+  @extend %flex-container;
+}
+
+[class*='col'] {
+  margin-left: getGutter(1);
+  margin-right: getGutter(1);
+}
+
+@for $i from 1 through $cols {
+  .col-#{$i} {
+    width: colWidth($i);
+  }
+}
+
+@each $key, $value in $breakpoint {
+  @media screen and (max-width: $value) {
+    @for $i from 1 through $cols {
+      .col-#{$key}-#{$i} {
+        width: colWidth($i);
+      }
+    }
+  }
+}
+
+.gridBox [class*='col'] {
+  float: left;
+}
+.gridBox .float-r{
+  float: right;
+}
+.gridBox .col {
+  float: unset;
+}
+.flexBox .col{
+  flex: 1 1 0;
+}

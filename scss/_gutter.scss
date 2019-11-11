@@ -1,0 +1,25 @@
+@each $key, $value in $direction {
+  @if($key == all){
+    $key: '';
+  }
+  @for $i from 1 through 5 {
+    .m#{$key}-#{$i} {
+      @each $dir in $value{
+        margin-#{$dir}: getGutter($i);
+      }
+    }
+  }
+}
+
+@each $key, $value in $direction {
+  @if($key == all){
+    $key: '';
+  }
+  @for $i from 1 through 5 {
+    .p#{$key}-#{$i} {
+      @each $dir in $value{
+        padding-#{$dir}: getGutter($i);
+      }
+    }
+  }
+}

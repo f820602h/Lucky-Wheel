@@ -1,0 +1,57 @@
+body,
+html {
+  width: 100vw;
+  height: 100vh;
+  min-width: $windowMinWidth;
+  font-family: $fontFamily;
+  background: color(white);
+}
+.container {
+  @include container();
+}
+h1 {
+  color: color(white);
+  @include font(1,8);
+  line-height: 1;
+}
+h2 {
+  color: color(HLightColor);
+  @include font(1,8);
+  line-height: 1;
+  letter-spacing: 2px;
+  text-decoration: underline;
+}
+h3{
+  color: color(subTitle);
+  i.material-icons{
+    font-size: 4rem;
+  }
+}
+p {
+  color: color(subTitle);
+  font-size: 32px;
+  line-height: 1.2;
+  text-align: center;
+}
+span{
+  display: block;
+  color: color(thirdTitle);
+  font-size: 20px;
+  line-height: 1.2;
+  text-align: center;
+  background: color(subTitle);
+  border-radius: 25%;
+  @include direct-padding(x,0.5);
+  @include direct-margin(t,0.5);
+}
+a {
+  background: color(link);
+  color: color(white);
+  font-size: 20px;
+  line-height: 1.2;
+  border-radius: 5px;
+  @extend %decoration;
+  @include direct-padding(y,0.5);
+  @include direct-padding(x,1.5);
+  @include direct-margin(x,1);
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "text": "Movie",
+    "icon": "<i class='material-icons'>movie_filter</i>",
+    "num": 0
+  },
+  {
+    "text": "Wish",
+    "icon": "<i class='material-icons'>cake</i>",
+    "num": 5
+  },
+  {
+    "text": "Anything",
+    "icon": "<i class='material-icons'>star</i>",
+    "num": 5
+  },
+  {
+    "text": "Child",
+    "icon": "<i class='material-icons'>child_care</i>",
+    "num": 4
+  },
+  {
+    "text": "Flight",
+    "icon": "<i class='material-icons'>flight</i>",
+    "num": 1
+  },
+  {
+    "text": "Wifi",
+    "icon": "<i class='material-icons'>wifi</i>",
+    "num": 5
+  }
+]

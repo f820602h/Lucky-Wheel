@@ -1,0 +1,119 @@
+//page
+$maxWidth: 540px                !default;
+$windowMinWidth: 320px           !default;
+
+//font
+$fontFamily: 'Roboto Condensed', sans-serif;
+$fontSize: 72px 48px 32px;
+$baseFontSize: 4px;
+$baseLineHeight: 10px;
+$baseLinePadding: 1.5;
+
+//box-model
+$baseGutter: 10px                !default;
+
+//color
+$mainColor: #5858B9            !default;
+$lightMainColor: #ffffff       !default;
+$darkMainColor: #22299b        !default;
+
+$subColor: #343BAA             !default;
+$lightSubColor: #ffffff        !default;
+$darkSubColor: #ffffff         !default;
+
+$thirdColor: #F0BEFF           !default;
+$lightThirdColor: #ffffff      !default;
+$darkThirdColor: #ffffff       !default;
+
+$HLightColor: #FF00BA          !default;
+
+$white: #ffffff                !default;
+$gray1: #ebebeb                !default;
+$gray2: #dddddd                !default;
+$gray3: #cccccc                !default;
+$gray4: #aaaaaa                !default;
+$gray5: #999999                !default;
+$gray6: #666666                !default;
+$gray7: #333333                !default;
+$gary8: #474747                !default;
+$black: #000000                !default;
+
+$defaultColor: (
+    mainBg: $mainColor,
+    secondBg: $subColor,
+    thirdBg: $thirdColor,
+    HLightColor: $HLightColor,
+    mainTitle: $white,
+    subTitle: $subColor,
+    thirdTitle: $thirdColor,
+    content: $black,
+    navLink: $white,
+    link: $darkMainColor,
+
+    white: $white,
+    gray1: $gray1,
+    gray2: $gray2,
+    gray3: $gray3,
+    gray4: $gray4,
+    gray5: $gray5,
+    gray6: $gray6,
+    gray7: $gray7,
+    black: $black,
+);
+$userColor: (
+    
+);
+$color: map-merge(
+   $defaultColor,
+   $userColor,
+);
+
+
+//media query
+$pcWidth: 1140px;
+$padWidth: 960px;
+$padsWidth: 768px;
+$phoneWidth: 540px;
+$phonesWidth: 480px;
+
+$breakpoint: (
+    "xl": $pcWidth,
+    "lg": $padWidth,
+    "md": $padsWidth,
+    "sm": $phoneWidth,
+    "xs": $phonesWidth,
+);
+
+
+//grid system
+$cols: 24            !default;
+$gutters: 10px       !default;
+
+
+//flex
+$alignItems: (
+    "fn": flex-end,
+    "c": center,
+    "s": stretch,
+);
+$justifyContent: (
+    "fn": flex-end,
+    "c": center,
+    "sb": space-between,
+    "sa": space-around,
+    "se": space-evenly,
+);
+
+
+//direction
+$direction: (
+    all: top right bottom left,
+    x: right left,
+    y: top bottom,
+    t: top,
+    r: right,
+    b: bottom,
+    l: left,
+);
+
+
