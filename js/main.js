@@ -7,9 +7,6 @@ let giftBox = []
 let data = []
 let url = './db.json'
 
-let rand = function(start, end) {
-	return Math.floor(Math.random() * (end - start) + start)
-}
 
 let shuffle = function(a, b) {
 	let num = Math.random() > 0.5 ? -1 : 1
